@@ -2,7 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom scrollbar for webkit */
+/* Otimizações para Mobile */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px; /* Prevenir zoom ao focar em input */
+  }
+}
+
+/* Custom scrollbar para webkit */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -22,6 +29,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -31,4 +40,24 @@ html {
 body {
   margin: 0;
   padding: 0;
+  /* Reduzir motion em mobile para melhor performance */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Otimização para imagens em mobile */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Melhorar performance de animações */
+.will-animate {
+  will-change: transform, opacity;
 }

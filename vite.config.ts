@@ -26,7 +26,23 @@ export default defineConfig(({ mode }) => {
       build: {
         outDir: 'dist',
         sourcemap: false,
-        minify: 'terser'
-      }
+        minify: 'terser',
+        terserOptions: {
+          compress: {
+            drop_console: true,
+          },
+        },
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              'framer-motion': ['framer-motion'],
+              'lucide-react': ['lucide-react'],
+            },
+          },
+        },
+      },
+      ssr: {
+        noExternal: ['framer-motion'],
+      },
     };
 });

@@ -5,6 +5,7 @@ import { Button } from './Button';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ViewType } from '../types';
 import { InteractiveBackground } from './InteractiveBackground';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 interface HeroProps {
   onNavigate: (view: ViewType) => void;
@@ -317,6 +318,7 @@ const TechIcon = ({ children, label, color, hoverColor }: { children: React.Reac
 
 export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenChat }) => {
   const [wordIndex, setWordIndex] = useState(0);
+  const isMobile = useIsMobile();
 
   // Rotate words effect
   useEffect(() => {
@@ -327,8 +329,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenChat }) => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col pt-32 pb-10 overflow-hidden font-sans">
-      <InteractiveBackground />
+    <section className="relative min-h-screen flex flex-col pt-20 md:pt-32 pb-10 overflow-hidden font-sans">
+      <InteractiveBackground isMobile={isMobile} />
       
       <div className="container mx-auto px-4 md:px-8 flex-grow flex flex-col justify-center relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
@@ -354,10 +356,10 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenChat }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="font-display font-bold text-5xl md:text-6xl lg:text-7xl text-gray-900 leading-[1.1] mb-6 tracking-tight"
+              className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 leading-[1.1] mb-6 tracking-tight"
             >
               Crio experiências <br className="hidden lg:block"/> digitais{' '}
-              <div className="inline-block relative min-w-[280px] text-left">
+              <div className="inline-block relative min-w-[250px] sm:min-w-[280px] text-left">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={wordIndex}

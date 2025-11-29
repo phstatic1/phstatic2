@@ -38,9 +38,9 @@ export const Header: React.FC<NavigationProps> = ({ currentView, onNavigate }) =
           className="flex items-center gap-2 group focus:outline-none"
         >
           <div className="bg-primary-600 text-white p-2 rounded-lg group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 shadow-lg shadow-primary-600/20">
-            <Code2 size={22} />
+            <Code2 size={20} className="md:w-[22px] md:h-[22px]" />
           </div>
-          <span className="font-display font-bold text-xl md:text-2xl text-gray-900 tracking-tight group-hover:text-primary-600 transition-colors">
+          <span className="font-display font-bold text-lg md:text-2xl text-gray-900 tracking-tight group-hover:text-primary-600 transition-colors">
             PH<span className="text-primary-600">.dev</span>
           </span>
         </button>
@@ -48,7 +48,7 @@ export const Header: React.FC<NavigationProps> = ({ currentView, onNavigate }) =
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-1">
           {NAV_ITEMS.map((item) => {
-             if (item.id === 'contact') return null; // Render contact as button separately
+             if (item.id === 'contact') return null;
              const isActive = currentView === item.id;
              return (
               <button
