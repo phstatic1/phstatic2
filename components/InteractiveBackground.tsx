@@ -1,18 +1,13 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useIsMobile } from '../hooks/useIsMobile';
 
-const ParticleNetwork = ({ isMobile }: { isMobile: boolean }) => {
+const ParticleNetwork = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
-    // Desabilita canvas no mobile para economizar recursos
-    if (isMobile) return;
-    
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
@@ -38,15 +33,17 @@ const ParticleNetwork = ({ isMobile }: { isMobile: boolean }) => {
       constructor() {
         this.x = Math.random() * w;
         this.y = Math.random() * h;
-        this.vx = (Math.random() - 0.5) * 0.3; // Movimento bem mais lento
-        this.vy = (Math.random() - 0.5) * 0.3;
-        this.size = Math.random() * 1.5 + 0.8; // Partículas menores
-        this.alpha = 1;
+        this.vx = (Math.random() - 0.5) * 1.5; // Um pouco mais rápido para ser notado
+        this.vy = (Math.random() - 0.5) * 1.5;
+        this.size = Math.random() * 2.5 + 1.5; // Partículas levemente maiores
+        this.alpha = 0;
       }
 
       update() {
-        // Manter alpha sempre visível
-        this.alpha = 1;
+        // Fade in mais rápido
+        if (this.alpha < 1) {
+            this.alpha += 0.05;
+        }
 
         this.x += this.vx;
         this.y += this.vy;
@@ -75,8 +72,8 @@ const ParticleNetwork = ({ isMobile }: { isMobile: boolean }) => {
       draw() {
         if (!ctx) return;
         ctx.save();
-        ctx.globalAlpha = this.alpha * 0.15; // Sutil mas vísível
-        ctx.fillStyle = 'rgba(124, 58, 237, 1)';
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = 'rgba(124, 58, 237, 0.8)'; // Cor primária mais forte
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -109,9 +106,9 @@ const ParticleNetwork = ({ isMobile }: { isMobile: boolean }) => {
                 const opacity = (1 - (distance / connectionDistance)) * Math.min(particles[i].alpha, particles[j].alpha);
                 
                 if (opacity > 0) {
-                    // Linhas sutis mas visíveis
-                    ctx.strokeStyle = `rgba(124, 58, 237, ${opacity * 0.1})`; 
-                    ctx.lineWidth = 0.8;
+                    // Aumentei drasticamente a opacidade da linha (0.15 -> 0.5)
+                    ctx.strokeStyle = `rgba(124, 58, 237, ${opacity * 0.5})`; 
+                    ctx.lineWidth = 1.2;
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
                     ctx.stroke();
@@ -152,37 +149,14 @@ const ParticleNetwork = ({ isMobile }: { isMobile: boolean }) => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseout', handleMouseLeave);
     };
-  }, [isMobile]);
+  }, []);
 
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />;
 };
 
 export const InteractiveBackground: React.FC = () => {
-  const isMobile = useIsMobile();
-  
-  // No mobile, retorna apenas fundo simples
-  if (isMobile) {
-    return (
-      <div className="absolute inset-0 z-0 overflow-hidden bg-white select-none pointer-events-none">
-        {/* Grid simples sem animações */}
-        <div 
-          className="absolute inset-0 opacity-[0.2]"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)
-            `,
-            backgroundSize: '40px 40px',
-          }}
-        />
-        {/* Vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(255,255,255,0.6)_70%,#fff_100%)] z-10" />
-      </div>
-    );
-  }
-  
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden bg-white select-none pointer-events-none">
+    <div className="absolute inset-0 -z-10 overflow-hidden bg-white select-none pointer-events-none">
       
       {/* 1. Architectural Grid Pattern */}
       <div 
@@ -231,7 +205,7 @@ export const InteractiveBackground: React.FC = () => {
 
       {/* 3. Neural Network Particles */}
       <div className="absolute inset-0 z-0">
-         <ParticleNetwork isMobile={isMobile} />
+         <ParticleNetwork />
       </div>
 
       {/* 4. Vignette Suavizado (Menos opaco no centro) */}

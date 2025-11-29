@@ -4,7 +4,6 @@ import { ArrowLeft, CheckCircle2, ChevronDown, Clock, Code2, HelpCircle, Message
 import { ServicePackage } from '../types';
 import { Button } from './Button';
 import { WHATSAPP_NUMBER } from '../constants';
-import { useIsMobile } from '../hooks/useIsMobile';
 
 interface ServiceDetailProps {
   service: ServicePackage;
@@ -15,7 +14,6 @@ interface ServiceDetailProps {
 export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, onHire }) => {
   const [activeTab, setActiveTab] = useState<'overview' | 'scope' | 'faq'>('overview');
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-  const isMobile = useIsMobile();
 
   // Scroll to top when mounted
   useEffect(() => {
@@ -34,10 +32,10 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
 
   return (
     <motion.div 
-      initial={isMobile ? {} : { opacity: 0, x: 50 }}
-      animate={isMobile ? {} : { opacity: 1, x: 0 }}
-      exit={isMobile ? {} : { opacity: 0, x: 50 }}
-      transition={isMobile ? { duration: 0 } : { duration: 0.4 }}
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 50 }}
+      transition={{ duration: 0.4 }}
       className="min-h-screen bg-white pt-20 pb-20 relative z-40 font-sans"
     >
       {/* Hero Header */}
@@ -128,10 +126,10 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
                 {activeTab === 'overview' && (
                   <motion.div 
                     key="overview"
-                    initial={isMobile ? {} : { opacity: 0, y: 10 }}
-                    animate={isMobile ? {} : { opacity: 1, y: 0 }}
-                    exit={isMobile ? {} : { opacity: 0, y: -10 }}
-                    transition={isMobile ? { duration: 0 } : { duration: 0.2 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
                     className="space-y-10"
                   >
                     <section>
@@ -174,10 +172,10 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
                 {activeTab === 'scope' && (
                   <motion.div 
                     key="scope"
-                    initial={isMobile ? {} : { opacity: 0, y: 10 }}
-                    animate={isMobile ? {} : { opacity: 1, y: 0 }}
-                    exit={isMobile ? {} : { opacity: 0, y: -10 }}
-                    transition={isMobile ? { duration: 0 } : { duration: 0.2 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <div className="grid md:grid-cols-2 gap-8">
                         {/* Included Column */}
@@ -220,10 +218,10 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
                 {activeTab === 'faq' && (
                   <motion.div 
                     key="faq"
-                    initial={isMobile ? {} : { opacity: 0, y: 10 }}
-                    animate={isMobile ? {} : { opacity: 1, y: 0 }}
-                    exit={isMobile ? {} : { opacity: 0, y: -10 }}
-                    transition={isMobile ? { duration: 0 } : { duration: 0.2 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
                     className="space-y-4"
                   >
                      <h3 className="text-xl font-bold font-display text-gray-900 mb-6">Dúvidas Comuns deste Pacote</h3>
@@ -243,9 +241,9 @@ export const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, o
                              <AnimatePresence>
                                  {openFaqIndex === index && (
                                      <motion.div 
-                                        initial={isMobile ? {} : { height: 0, opacity: 0 }}
-                                        animate={isMobile ? {} : { height: 'auto', opacity: 1 }}
-                                        exit={isMobile ? {} : { height: 0, opacity: 0 }}
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: 'auto', opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
                                         className="bg-gray-50 px-5 pb-5 pt-0 text-sm text-gray-600 leading-relaxed border-t border-gray-100"
                                      >
                                          <div className="pt-4">{faq.answer}</div>

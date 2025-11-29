@@ -6,14 +6,12 @@ import { SectionTitle } from './SectionTitle';
 import { Check, AlertTriangle, ArrowRight, ShieldCheck, PlusCircle, FileEdit } from 'lucide-react';
 import { Button } from './Button';
 import { ServicePackage } from '../types';
-import { useIsMobile } from '../hooks/useIsMobile';
 
 interface ServicesProps {
   onSelectService?: (service: ServicePackage) => void;
 }
 
 export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
-  const isMobile = useIsMobile();
   
   const handleServiceClick = (pkg: ServicePackage) => {
     if (onSelectService) {
@@ -31,8 +29,8 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
 
         {/* Disclaimer Banner */}
         <motion.div 
-            initial={isMobile ? {} : { opacity: 0, y: 20 }}
-            whileInView={isMobile ? {} : { opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="max-w-3xl mx-auto mb-16 p-5 bg-white border border-yellow-200 rounded-xl flex flex-col md:flex-row items-center md:items-start gap-4 text-sm text-gray-600 shadow-sm"
         >
@@ -54,10 +52,10 @@ export const Services: React.FC<ServicesProps> = ({ onSelectService }) => {
           {SERVICE_PACKAGES.map((pkg, index) => (
             <motion.div
               key={pkg.id}
-              initial={isMobile ? {} : { opacity: 0, y: 30 }}
-              whileInView={isMobile ? {} : { opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={isMobile ? { duration: 0 } : { duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`relative flex flex-col h-full rounded-3xl transition-all duration-300
                 ${pkg.highlight 
                   ? 'bg-gray-900 text-white shadow-2xl shadow-gray-900/20 ring-1 ring-gray-900 transform lg:scale-105 z-10' 
