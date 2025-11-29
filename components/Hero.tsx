@@ -329,11 +329,11 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenChat }) => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col pt-20 md:pt-32 pb-10 overflow-hidden font-sans">
+    <section className="relative min-h-screen flex flex-col pt-16 md:pt-32 pb-10 md:pb-20 overflow-hidden font-sans">
       <InteractiveBackground isMobile={isMobile} />
       
       <div className="container mx-auto px-4 md:px-8 flex-grow flex flex-col justify-center relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-20">
           
           {/* Left Content (Text) */}
           <div className="flex-1 text-center lg:text-left">
@@ -342,7 +342,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenChat }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-xs font-bold tracking-wide uppercase mb-8 shadow-sm"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-xs font-bold tracking-wide uppercase mb-6 md:mb-8 shadow-sm"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
@@ -356,10 +356,10 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenChat }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gray-900 leading-[1.1] mb-6 tracking-tight"
+              className="font-display font-bold text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-gray-900 leading-[1.15] mb-4 md:mb-6 tracking-tight"
             >
-              Crio experiências <br className="hidden lg:block"/> digitais{' '}
-              <div className="inline-block relative min-w-[250px] sm:min-w-[280px] text-left">
+              Crio experiências <br className="hidden sm:block"/> digitais{' '}
+              <div className="inline-block relative min-w-[180px] sm:min-w-[250px] text-left">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={wordIndex}
@@ -373,7 +373,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenChat }) => {
                   </motion.span>
                 </AnimatePresence>
                 {/* Invisible copy to hold width */}
-                <span className="invisible">{DYNAMIC_WORDS[0]}.</span>
+                <span className="invisible text-3xl sm:text-4xl md:text-6xl">{DYNAMIC_WORDS[0]}.</span>
               </div>
             </motion.h1>
 
@@ -382,7 +382,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenChat }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light"
+              className="text-base md:text-lg lg:text-xl text-gray-600 mb-8 md:mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light"
             >
               Desenvolvedor Frontend Especialista. Transformo conceitos complexos em interfaces <strong className="text-gray-900 font-medium">Pixel-Perfect</strong>, acessíveis e de alta performance usando <strong className="text-gray-900 font-medium">React</strong> e <strong className="text-gray-900 font-medium">TypeScript</strong>.
             </motion.p>
@@ -392,7 +392,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenChat }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 md:gap-4"
             >
               <Button 
                 size="lg" 
@@ -414,7 +414,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenChat }) => {
             </motion.div>
           </div>
 
-          {/* Right Content (Visual Hook / Floating Card) */}
+          {/* Right Content (Visual Hook / Floating Card) - Desktop Only */}
           <div className="flex-1 hidden lg:flex justify-center relative min-h-[400px] w-full items-center">
             
              {/* Floating Code Card */}
@@ -449,36 +449,36 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenChat }) => {
           </div>
         </div>
 
-        {/* Footer Tech Stack Bar */}
+        {/* Footer Tech Stack Bar - Otimizado para Mobile */}
         <motion.div 
            initial={{ opacity: 0 }}
            animate={{ opacity: 1 }}
            transition={{ delay: 1, duration: 1 }}
-           className="mt-20 md:mt-32 border-t border-gray-100 pt-10"
+           className="mt-16 md:mt-24 lg:mt-32 border-t border-gray-100 pt-8 md:pt-10"
         >
-           <p className="text-center text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-8">
+           <p className="text-center text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-6 md:mb-8">
               Stack de Alta Performance
            </p>
-           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-90">
+           <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8 lg:gap-16 opacity-90">
               
               {/* React - Official #61DAFB */}
               <TechIcon label="React" color="#61DAFB" hoverColor="#61DAFB">
-                  <svg viewBox="0 0 24 24" className="w-10 h-10 fill-current" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.36c-1.68 0-3.32-.42-4.76-1.12-1.39-.68-2.67-1.74-3.64-3.03-.96-1.28-1.55-2.82-1.55-4.49 0-1.67.59-3.21 1.55-4.49.97-1.29 2.25-2.35 3.64-3.03 1.44-.7 3.08-1.12 4.76-1.12 1.68 0 3.32.42 4.76 1.12 1.39.68 2.67 1.74 3.64 3.03.96 1.28 1.55 2.82 1.55 4.49 0 1.67-.59 3.21-1.55 4.49-.97 1.29-2.25 2.35-3.64 3.03-1.44.7-3.08 1.12-4.76 1.12zM12 4.86c-1.35 0-2.67.33-3.82.88-1.11.53-2.12 1.37-2.89 2.38-.76 1.01-1.23 2.22-1.23 3.59 0 1.36.46 2.58 1.23 3.59.77 1.01 1.78 1.85 2.89 2.38 1.15.55 2.47.88 3.82.88s2.67-.33 3.82-.88c1.11-.53 2.12-1.37 2.89-2.38.76-1.01 1.23-2.22 1.23-3.59 0-1.36-.46-2.58-1.23-3.59-.77-1.01-1.78-1.85-2.89-2.38-1.15-.55-2.47-.88-3.82-.88z"/><circle cx="12" cy="12" r="2.05"/></svg>
+                  <svg viewBox="0 0 24 24" className="w-8 md:w-10 h-8 md:h-10 fill-current" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.36c-1.68 0-3.32-.42-4.76-1.12-1.39-.68-2.67-1.74-3.64-3.03-.96-1.28-1.55-2.82-1.55-4.49 0-1.67.59-3.21 1.55-4.49.97-1.29 2.25-2.35 3.64-3.03 1.44-.7 3.08-1.12 4.76-1.12 1.68 0 3.32.42 4.76 1.12 1.39.68 2.67 1.74 3.64 3.03.96 1.28 1.55 2.82 1.55 4.49 0 1.67-.59 3.21-1.55 4.49-.97 1.29-2.25 2.35-3.64 3.03-1.44.7-3.08 1.12-4.76 1.12zM12 4.86c-1.35 0-2.67.33-3.82.88-1.11.53-2.12 1.37-2.89 2.38-.76 1.01-1.23 2.22-1.23 3.59 0 1.36.46 2.58 1.23 3.59.77 1.01 1.78 1.85 2.89 2.38 1.15.55 2.47.88 3.82.88s2.67-.33 3.82-.88c1.11-.53 2.12-1.37 2.89-2.38.76-1.01 1.23-2.22 1.23-3.59 0-1.36-.46-2.58-1.23-3.59-.77-1.01-1.78-1.85-2.89-2.38-1.15-.55-2.47-.88-3.82-.88z"/><circle cx="12" cy="12" r="2.05"/></svg>
               </TechIcon>
 
               {/* TypeScript - Official #3178C6 */}
               <TechIcon label="TypeScript" color="#3178C6" hoverColor="#3178C6">
-                  <svg viewBox="0 0 24 24" className="w-9 h-9 fill-current rounded" xmlns="http://www.w3.org/2000/svg"><path d="M2.25 0h19.5c1.24 0 2.25 1.01 2.25 2.25v19.5c0 1.24-1.01 2.25-2.25 2.25H2.25C1.01 24 0 22.99 0 21.75V2.25C0 1.01 1.01 0 2.25 0zm10.12 11.62L11 16.85h1.9c.7.01 1.26-.25 1.69-.76.43-.52.65-1.18.65-1.99 0-.85-.21-1.53-.63-2.05-.42-.51-1.01-.77-1.78-.77h-2.47v6.62H15.6v-1.63h-2.8v-1.6h2.64v-1.6h-2.64v-1.45h2.8V9.99h-3.23v1.63zm-4.7 5.23h1.64v-6.86h2.15v-1.63h-5.94v1.63h2.15v6.86z"/></svg>
+                  <svg viewBox="0 0 24 24" className="w-7 md:w-9 h-7 md:h-9 fill-current rounded" xmlns="http://www.w3.org/2000/svg"><path d="M2.25 0h19.5c1.24 0 2.25 1.01 2.25 2.25v19.5c0 1.24-1.01 2.25-2.25 2.25H2.25C1.01 24 0 22.99 0 21.75V2.25C0 1.01 1.01 0 2.25 0zm10.12 11.62L11 16.85h1.9c.7.01 1.26-.25 1.69-.76.43-.52.65-1.18.65-1.99 0-.85-.21-1.53-.63-2.05-.42-.51-1.01-.77-1.78-.77h-2.47v6.62H15.6v-1.63h-2.8v-1.6h2.64v-1.6h-2.64v-1.45h2.8V9.99h-3.23v1.63zm-4.7 5.23h1.64v-6.86h2.15v-1.63h-5.94v1.63h2.15v6.86z"/></svg>
               </TechIcon>
 
               {/* Tailwind - Official #38BDF8 */}
               <TechIcon label="Tailwind" color="#38BDF8" hoverColor="#38BDF8">
-                  <svg viewBox="0 0 24 24" className="w-10 h-10 fill-current" xmlns="http://www.w3.org/2000/svg"><path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/></svg>
+                  <svg viewBox="0 0 24 24" className="w-8 md:w-10 h-8 md:h-10 fill-current" xmlns="http://www.w3.org/2000/svg"><path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/></svg>
               </TechIcon>
 
-              {/* Next.js - Official Black (or dark gray for visibility) */}
+              {/* Next.js - Official Black (ou dark gray para visibilidade) */}
               <TechIcon label="Next.js" color="#262626" hoverColor="#000000">
-                  <svg viewBox="0 0 24 24" className="w-10 h-10 fill-current" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.523 0 10 4.477 10 10 0 2.275-.76 4.375-2.036 6.096L9.5 6.005h2.096l6.904 11.233A9.957 9.957 0 0112 22C6.477 22 2 17.523 2 12S6.477 2 12 2zM7.5 17.5v-11h-2v11h2z"/></svg>
+                  <svg viewBox="0 0 24 24" className="w-8 md:w-10 h-8 md:h-10 fill-current" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.523 0 10 4.477 10 10 0 2.275-.76 4.375-2.036 6.096L9.5 6.005h2.096l6.904 11.233A9.957 9.957 0 0112 22C6.477 22 2 17.523 2 12S6.477 2 12 2zM7.5 17.5v-11h-2v11h2z"/></svg>
               </TechIcon>
 
            </div>
